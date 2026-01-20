@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explain My Failure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0c10;
+        --card: #11131a;
+        --accent: linear-gradient(135deg, #9b5cff, #5ad8ff);
+        --muted: #9ea7b3;
+        --text: #e9ecf2;
+        --danger: #ff6b6b;
+        --radius: 14px;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at 20% 20%, rgba(90, 216, 255, 0.08), transparent 35%),
+          radial-gradient(circle at 80% 10%, rgba(155, 92, 255, 0.08), transparent 40%),
+          var(--bg);
+        color: var(--text);
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+      }
+      header {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 48px 24px 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .pill {
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      main {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 12px 24px 64px;
+      }
+      .hero {
+        padding: 36px;
+        border-radius: var(--radius);
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: var(--shadow);
+      }
+      .hero h1 {
+        font-size: 44px;
+        margin: 0 0 14px;
+        letter-spacing: -0.02em;
+      }
+      .hero p {
+        color: var(--muted);
+        max-width: 620px;
+        line-height: 1.6;
+        margin-bottom: 22px;
+      }
+      button.primary {
+        padding: 14px 20px;
+        border-radius: 12px;
+        border: none;
+        color: #0a0b0f;
+        background-image: var(--accent);
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.1s ease, box-shadow 0.2s ease;
+        box-shadow: 0 12px 30px rgba(90, 216, 255, 0.25);
+      }
+      button.primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 34px rgba(90, 216, 255, 0.35);
+      }
+      .panel {
+        margin-top: 24px;
+        padding: 26px;
+        border-radius: var(--radius);
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: var(--shadow);
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 20px;
+      }
+      textarea {
+        width: 100%;
+        min-height: 240px;
+        background: #0e1017;
+        color: var(--text);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 16px;
+        font-size: 15px;
+        resize: vertical;
+      }
+      label {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+      input[type="range"] {
+        width: 100%;
+      }
+      .controls {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 14px;
+      }
+      .status {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .results {
+        margin-top: 26px;
+        display: grid;
+        gap: 14px;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        padding: 16px;
+      }
+      .card h3 {
+        margin: 0 0 8px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .truth {
+        border-left: 4px solid var(--danger);
+        padding-left: 12px;
+      }
+      .plan-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 10px;
+      }
+      .fade-in {
+        animation: fade 320ms ease;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 860px) {
+        .panel {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">Explain My Failure</div>
+      <div class="pill">Brutally honest AI reflection</div>
+    </header>
+    <main>
+      <section class="hero">
+        <h1>Understand Why You Failed. Fix It Properly.</h1>
+        <p>
+          Not a cheerleader — a strategist that tells you why things broke, the patterns you keep
+          repeating, and exactly what to do for the next 7 days to recover.
+        </p>
+        <button class="primary" onclick="scrollToForm()">Analyze My Failure</button>
+      </section>
+
+      <section id="form" class="panel">
+        <div>
+          <h2 style="margin-top: 0">Failure Brief</h2>
+          <textarea id="description" placeholder="Be specific. What failed? What did you try? Where did it break?"></textarea>
+          <div style="margin-top: 12px; display: flex; gap: 10px">
+            <button class="primary" id="analyzeBtn">Analyze Honestly</button>
+            <div class="status" id="status"></div>
+          </div>
+        </div>
+        <div class="controls">
+          <label>
+            Effort level
+            <span id="effortVal">5</span>
+          </label>
+          <input type="range" id="effort" min="0" max="10" value="5" />
+          <label>
+            Preparation hours
+            <span id="prepVal">10</span>
+          </label>
+          <input type="range" id="prep" min="0" max="80" value="10" />
+          <label>
+            Confidence before
+            <span id="confVal">6</span>
+          </label>
+          <input type="range" id="conf" min="0" max="10" value="6" />
+        </div>
+      </section>
+
+      <section id="results" class="results"></section>
+    </main>
+
+    <script>
+      const effort = document.getElementById("effort");
+      const prep = document.getElementById("prep");
+      const conf = document.getElementById("conf");
+      const effortVal = document.getElementById("effortVal");
+      const prepVal = document.getElementById("prepVal");
+      const confVal = document.getElementById("confVal");
+      [effort, prep, conf].forEach((el) =>
+        el.addEventListener("input", () => {
+          effortVal.textContent = effort.value;
+          prepVal.textContent = prep.value;
+          confVal.textContent = conf.value;
+        })
+      );
+
+      const statusEl = document.getElementById("status");
+      const btn = document.getElementById("analyzeBtn");
+      const results = document.getElementById("results");
+
+      // Allow overriding the backend URL via a global before loading this script
+      const API_BASE = window.API_BASE || "http://localhost:8000";
+
+      // Check backend connection on page load
+      async function checkBackendConnection() {
+        try {
+          const res = await fetch(`${API_BASE}/health`, { 
+            method: "GET",
+            signal: AbortSignal.timeout(3000)
+          });
+          if (res.ok) {
+            console.log("✓ Backend connected");
+          }
+        } catch (err) {
+          console.warn("⚠ Backend not reachable at", API_BASE);
+          console.warn("Make sure to start the backend: cd backend && uvicorn app.main:app --host 0.0.0.0 --port 8000");
+        }
+      }
+      checkBackendConnection();
+
+      btn.addEventListener("click", async () => {
+        const description = document.getElementById("description").value.trim();
+        if (description.length < 20) {
+          statusEl.textContent = "Give more detail so I can diagnose properly.";
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = "Analyzing patterns…";
+        statusEl.textContent = "Running brutally honest analysis.";
+        results.innerHTML = "";
+
+        try {
+          const res = await fetch(`${API_BASE}/analyze`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              description,
+              effort_level: Number(effort.value),
+              preparation_hours: Number(prep.value),
+              confidence_before: Number(conf.value),
+            }),
+          });
+          
+          if (!res.ok) {
+            const errorText = await res.text();
+            let errorMsg = `Server error (${res.status})`;
+            try {
+              const errorJson = JSON.parse(errorText);
+              errorMsg = errorJson.detail || errorMsg;
+            } catch {
+              errorMsg = errorText || errorMsg;
+            }
+            throw new Error(errorMsg);
+          }
+          
+          const data = await res.json();
+          renderResults(data);
+          statusEl.textContent = "Complete. Ready to go deeper.";
+        } catch (err) {
+          let errorMsg = err.message;
+          if (err.message === "Failed to fetch" || err.message.includes("fetch")) {
+            errorMsg = `Cannot connect to backend at ${API_BASE}. Make sure the backend is running on port 8000.`;
+          }
+          statusEl.textContent = "Error: " + errorMsg;
+          statusEl.style.color = "#ff6b6b";
+          console.error("Fetch error:", err);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Analyze Honestly";
+        }
+      });
+
+      function renderResults(data) {
+        results.innerHTML = `
+          <div class="card fade-in">
+            <h3>Root Cause</h3>
+            <p>${data.primary_root_cause}</p>
+            <p class="muted">Secondary: ${data.secondary_causes.join(", ")}</p>
+          </div>
+          <div class="card fade-in">
+            <h3>Repeated Pattern</h3>
+            <p>${data.repeated_behavior_pattern}</p>
+          </div>
+          <div class="card fade-in truth">
+            <h3>Hard Truth</h3>
+            <p>${data.harsh_truth}</p>
+          </div>
+          <div class="card fade-in">
+            <h3>False Beliefs</h3>
+            <p>${data.false_beliefs_or_assumptions.join(", ")}</p>
+          </div>
+          <div class="card fade-in">
+            <h3>Corrective Actions</h3>
+            <ul>${data.corrective_actions.map((c) => `<li>${c}</li>`).join("")}</ul>
+          </div>
+          <div class="card fade-in">
+            <h3>7-Day Recovery Plan</h3>
+            <div class="plan-grid">
+              ${Object.entries(data.seven_day_recovery_plan)
+                .map(([day, step]) => `<div class="card"><strong>${day}</strong><p>${step}</p></div>`)
+                .join("")}
+            </div>
+          </div>
+          <div class="card fade-in">
+            <h3>Long-term Warning</h3>
+            <p>${data.long_term_warning}</p>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:8px;">
+            <button class="primary" onclick="document.getElementById('description').focus()">Go deeper</button>
+            <button class="primary" onclick="location.reload()">Analyze another failure</button>
+          </div>
+        `;
+      }
+
+      function scrollToForm() {
+        document.getElementById("form").scrollIntoView({ behavior: "smooth" });
+      }
+    </script>
+  </body>
+</html>
